@@ -10,7 +10,7 @@ var resp = function (res, data, code, next) {
 };
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -33,7 +33,7 @@ app.post('/user/add', function (req, res, next) {
 
 });
 app.get('/user/:id', function (req, res, next) {
-    var param = req.params;
+    var param = req.body;
 
     appDao.get_user(param, function (response, code) {
         resp(res, response, code, next)
@@ -49,9 +49,12 @@ app.put('/user/:id', function (req, res, next) {
 
 });
 app.delete('/user/:id', function (req, res, next) {
-    var param = req.params;
+    var id = req.params.id;
+    var data = req.body;
 
-    appDao.delete_user(param, function (response, code) {
+    console.log("id", id);
+
+    appDao.delete_user({ id, data }, function (response, code) {
         resp(res, response, code, next)
     })
 });
