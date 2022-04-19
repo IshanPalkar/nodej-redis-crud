@@ -43,6 +43,7 @@ var AppDAO = {
 
     delete_user: function (data, callback) {
         console.log("data:", data);
+        console.log(resp);
         redis.delete_zrem({ key: { "id": data.id }, data: data.data }, function (resp) {
             if (resp) {
                 return callback({ err: false, response: "User was deleted successfully " }, 200);

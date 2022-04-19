@@ -51,9 +51,8 @@ app.put('/user/:id', function (req, res, next) {
 app.delete('/user/:id', function (req, res, next) {
     var id = req.params.id;
     var data = req.body;
-
     console.log("id", id);
-
+    
     appDao.delete_user({ id, data }, function (response, code) {
         resp(res, response, code, next)
     })
