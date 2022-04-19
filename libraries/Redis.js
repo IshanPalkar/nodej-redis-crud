@@ -52,7 +52,8 @@ var Redis = {
         this._client.zrem(key, zrem.data.deleteData, function (err, data) {
             if (err) return callback(err);
             else {
-                return callback(true);
+                console.log("console==",data)
+                return callback(data);
             }
         });
     },
